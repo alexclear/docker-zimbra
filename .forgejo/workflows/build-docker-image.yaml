@@ -1,0 +1,29 @@
+name: Build Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: docker
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get short commit SHA
+        id: vars
+        run: echo "SHORT_SHA=$(git rev-parse --short=7 HEAD)" >> $GITHUB_ENV
+
+      - name: Build and Push docker-zimbra image with Kaniko
+        uses: https://code.thetadev.de/actions/kaniko@v1
+        with:
+          image: zimbra/docker-zimbra
+          registry: harbor-pve1.spbnix.local
+          extra_args: "--skip-tls-verify"
+          tag: ${{ env.SHORT_SHA }}
+          tag_with_latest: true
+          build_file: Dockerfile
+          username: "robot$zimbra+robot"
+          password: ${{ secrets.HARBOR_TOKEN }}

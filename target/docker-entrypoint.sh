@@ -39,12 +39,12 @@ function shutdown_chroot
 
 function setup_environment
 {
-    # install a fresh Ubuntu 18.04 LTS (bionic) linux, if the volume is still empty
+    # install a fresh Ubuntu 22.04 LTS (jammy) linux, if the volume is still empty
     # (may contain mounted TLS certificates, so classical emptiness check cannot be used...)
     if [ ! -f "$ZIMBRA_ENVIRONMENT_PATH/etc/hosts" ]; then
 
-        echo "Installing minimalistic Ubuntu 18.04 LTS (bionic)..."
-        debootstrap --variant=minbase --arch=amd64 bionic /data http://archive.ubuntu.com/ubuntu/
+        echo "Installing minimalistic Ubuntu 22.04 LTS (jammy)..."
+        debootstrap --variant=minbase --arch=amd64 jammy /data http://archive.ubuntu.com/ubuntu/
 
         echo "Running Zimbra installation script (/app/install-zimbra.sh)..."
         mkdir -p $ZIMBRA_ENVIRONMENT_PATH/app

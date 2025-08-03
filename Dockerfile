@@ -1,5 +1,5 @@
-FROM ubuntu:18.04
-MAINTAINER Sascha Falk <sascha@falk-online.eu>
+FROM ubuntu:22.04
+MAINTAINER Alex Chistyakov <alex@spbnix.com>
 
 # Update image and install additional packages
 # -----------------------------------------------------------------------------
