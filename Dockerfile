@@ -1,5 +1,4 @@
 FROM ubuntu:22.04
-MAINTAINER Alex Chistyakov <alex@spbnix.com>
 
 # Update image and install additional packages
 # -----------------------------------------------------------------------------
