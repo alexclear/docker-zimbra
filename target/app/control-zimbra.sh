@@ -3,7 +3,7 @@
 case "$1" in
 
     start)
-        serivce rsyslog start
+        service rsyslog start
         service cron start
         service ssh start
 
