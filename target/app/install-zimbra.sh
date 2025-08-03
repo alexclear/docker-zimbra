@@ -42,16 +42,16 @@ echo "Retrieving some information needed for further steps..."
 ADMIN_EMAIL=`sudo -u zimbra /opt/zimbra/bin/zmlocalconfig smtp_destination | cut -d ' ' -f3`
 echo "- Admin e-mail address: $ADMIN_EMAIL"
 
-echo
-echo "Configuring Zimbra's brute-force detector (auditswatch) to send notifications to $ADMIN_EMAIL..."
+#echo
+#echo "Configuring Zimbra's brute-force detector (auditswatch) to send notifications to $ADMIN_EMAIL..."
 # download and install missing auditswatch file
 # ----------------------------------------------------------------------------------------------------------
-mkdir -p /install/auditswatch
-cd /install/auditswatch
-wget -O auditswatch http://bugzilla-attach.zimbra.com/attachment.cgi?id=66723
-mv auditswatch  /opt/zimbra/libexec/auditswatch
-chown root:root /opt/zimbra/libexec/auditswatch
-chmod 0755 /opt/zimbra/libexec/auditswatch
+#mkdir -p /install/auditswatch
+#cd /install/auditswatch
+#wget -O auditswatch http://bugzilla-attach.zimbra.com/attachment.cgi?id=66723
+#mv auditswatch  /opt/zimbra/libexec/auditswatch
+#chown root:root /opt/zimbra/libexec/auditswatch
+#chmod 0755 /opt/zimbra/libexec/auditswatch
 
 # configure auditswatch
 # ----------------------------------------------------------------------------------------------------------
