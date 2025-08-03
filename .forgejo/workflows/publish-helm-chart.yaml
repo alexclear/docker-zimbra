@@ -64,8 +64,8 @@ jobs:
           Eo2ne9BzkqUk42dP8Makkww/Rn5+UUDf/BgoxUWe/rY=
           -----END CERTIFICATE-----
           EOC
-          sudo cp $CERT_FILE /usr/local/share/ca-certificates/
-          sudo update-ca-certificates --fresh
+          cp $CERT_FILE /usr/local/share/ca-certificates/
+          update-ca-certificates --fresh
           rm -rf $TEMP_CERT_DIR
           echo $HARBOR_PASSWORD | helm registry login harbor-pve1.spbnix.local \
             --username $HARBOR_USERNAME --password-stdin
