@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   labels:
     app: {{ include "service.name" . }}
@@ -10,8 +10,7 @@ spec:
   selector:
     matchLabels:
       app: {{ include "service.name" . }}
-  strategy:
-    type: Recreate
+  serviceName: {{ include "service.fullname" . }}
   template:
     metadata:
       labels:
@@ -28,9 +27,9 @@ spec:
         imagePullPolicy: Always
         env:
         - name: EXTERNAL_HOST_FQDN
-          value: zimbra.my-domain.com
+          value: {{ .Values.externalHostFQDN }}
         - name: MAIL_DOMAINS
-          value: my-domain.eu,my-domain.org
+          value: {{ .Values.mailDomains }}
         volumeMounts:
         - name: zimbra
           mountPath: /data
@@ -44,9 +43,6 @@ spec:
             - SYS_ADMIN
             - SYS_PTRACE
       volumes:
-      - name: zimbra
-        hostPath:
-          path: "/kube-data/zimbra"
       - name: tls-certs
         secret:
           secretName: tls-zimbra.my-domain.com
@@ -55,3 +51,11 @@ spec:
             path: zimbra.key
           - key: tls.crt
             path: zimbra.crt
+  volumeClaimTemplates:
+  - metadata:
+      name: zimbra
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 10Gi
