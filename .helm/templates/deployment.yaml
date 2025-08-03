@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ include "service.name" . }}
+  name: {{ include "service.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "service.name" . }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: {{ include "service.name" . }}
+      annotations:
+        container.apparmor.security.beta.kubernetes.io/zimbra: unconfined
+        container.seccomp.security.alpha.kubernetes.io/zimbra: unconfined
+    spec:
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 180
+      containers:
+      - name: zimbra
+        image: {{ .Values.image }}:{{ .Values.tag }}
+        imagePullPolicy: Always
+        env:
+        - name: EXTERNAL_HOST_FQDN
+          value: zimbra.my-domain.com
+        - name: MAIL_DOMAINS
+          value: my-domain.eu,my-domain.org
+        volumeMounts:
+        - name: zimbra
+          mountPath: /data
+        - name: tls-certs
+          mountPath: /data/app/tls
+          readOnly: true
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+            - SYS_ADMIN
+            - SYS_PTRACE
+      volumes:
+      - name: zimbra
+        hostPath:
+          path: "/kube-data/zimbra"
+      - name: tls-certs
+        secret:
+          secretName: tls-zimbra.my-domain.com
+          items:
+          - key: tls.key
+            path: zimbra.key
+          - key: tls.crt
+            path: zimbra.crt
