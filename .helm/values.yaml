@@ -1,5 +1,5 @@
 image: registry.spbnix.com/zimbra/docker-zimbra
-tag: "60a0ebd"
+tag: "0309b85"
 externalHostFQDN: zimbra.my-domain.com
 mailDomains: my-domain.eu,my-domain.org
 storageClassName: ""
