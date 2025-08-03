@@ -2,8 +2,8 @@
 
 set -e
 
-ZIMBRA_DOWNLOAD_URL="https://files.zimbra.com/downloads/8.8.15_GA/zcs-8.8.15_GA_3869.UBUNTU18_64.20190918004220.tgz"
-ZIMBRA_DOWNLOAD_HASH="28d39a32328db0586d35cc7a461e92a43939aebe6f0ab58ee9225cb8824835db"
+ZIMBRA_DOWNLOAD_URL="https://github.com/maldua/zimbra-foss-builder/releases/download/zimbra-foss-build-ubuntu-22.04%2F10.1.9.p1/zcs-10.1.9_GA_4200001.UBUNTU22_64.20250721164603.tgz"
+ZIMBRA_DOWNLOAD_HASH="53c72eb7d2120c669b117e101c9ef272e0e22d24349313f1e7792a948db3fd49"
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
 # abort, if the shell is not attached to a terminal
