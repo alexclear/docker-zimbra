@@ -288,12 +288,13 @@ if [ "$$" = "1" ]; then
     # retrieve regular DNS server
     DNS_SERVER=`cat /etc/resolv.conf | sed -rn "s/^nameserver\s+([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})\s*$/\1/p"`
     if [ "$DNS_SERVER" != "127.0.0.1" ]; then
-        echo "$DNS_SERVER" > /etc/nameserver.org
+	mkdir -p /data/etc
+        echo "$DNS_SERVER" > /data/etc/nameserver.org
     else
-        if [ -f /etc/nameserver.org ]; then
-            DNS_SERVER=`cat /etc/nameserver.org`
+        if [ -f /data/etc/nameserver.org ]; then
+            DNS_SERVER=`cat /data/etc/nameserver.org`
         else
-            echo "Setting up split-horizon DNS failed. It seems to have been configured previously, but /etc/nameserver.org is missing now!"
+            echo "Setting up split-horizon DNS failed. It seems to have been configured previously, but /data/etc/nameserver.org is missing now!"
             exit 1
         fi
     fi
