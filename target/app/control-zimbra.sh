@@ -3,7 +3,7 @@
 case "$1" in
 
     start)
-        service rsyslog start
+        service supervisor start
         service cron start
         service ssh start
 
@@ -45,7 +45,7 @@ case "$1" in
 
         service ssh stop
         service cron stop
-        service rsyslog stop
+        service supervisor stop
         ;;
 
     reload)
