@@ -3,14 +3,14 @@
 case "$1" in
 
     start)
-        /etc/init.d/rsyslog start
-        /etc/init.d/cron start
-        /etc/init.d/ssh start
+        serivce rsyslog start
+        service cron start
+        service ssh start
 
         if [ ! -f "/.dont_start_zimbra" ]; then
 
             # start Zimbra services
-            /etc/init.d/zimbra start
+            service zimbra start
             sudo -u zimbra -- /opt/zimbra/bin/zmauditswatchctl start
 
             # stop the certificate updater service, if it is running
@@ -40,12 +40,12 @@ case "$1" in
         # stop Zimbra services
         if [ ! -f "/.dont_start_zimbra" ]; then
             sudo -u zimbra -- /opt/zimbra/bin/zmauditswatchctl stop
-            /etc/init.d/zimbra stop
+            service zimbra stop
         fi
 
-        /etc/init.d/ssh stop
-        /etc/init.d/cron stop
-        /etc/init.d/rsyslog stop
+        service ssh stop
+        service cron stop
+        service rsyslog stop
         ;;
 
     reload)
