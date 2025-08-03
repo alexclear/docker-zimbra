@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+set -x
 
 ZIMBRA_ENVIRONMENT_PATH="/data"
 HOSTNAME=$(hostname -a)
