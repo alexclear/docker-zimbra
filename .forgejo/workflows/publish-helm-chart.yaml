@@ -72,7 +72,7 @@ jobs:
 
       - name: Package Helm chart
         run: |
-          helm package .
+          helm package .helm
 
       - name: Push Helm chart to Docker Hub
         run: |
