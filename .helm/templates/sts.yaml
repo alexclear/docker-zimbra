@@ -45,7 +45,7 @@ spec:
       volumes:
       - name: tls-certs
         secret:
-          secretName: tls-zimbra.my-domain.com
+          secretName: {{ include "service.fullname" . }}-tls
           items:
           - key: tls.key
             path: zimbra.key

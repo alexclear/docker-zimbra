@@ -4,3 +4,10 @@ externalHostFQDN: zimbra.my-domain.com
 mailDomains: my-domain.eu,my-domain.org
 storageClassName: ""
 storageRequests: 10Gi
+certificate:
+  issuer:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: zimbra.my-domain.com
+  dnsNames:
+    - zimbra.my-domain.com
