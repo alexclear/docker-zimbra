@@ -58,4 +58,20 @@ APT::Periodic::AutocleanInterval "3";
 APT::Periodic::Unattended-Upgrade "1";
 EOF
 
+echo
+echo Setting up rsyslog supervisor configuration...
+mkdir -p /etc/supervisor/conf.d
+cat > /etc/supervisor/conf.d/rsyslog.conf <<EOF
+[program:rsyslog]
+; Original Description from systemd: System Logging Service
+; Documentation: https://www.rsyslog.com/doc/
+command=/usr/sbin/rsyslogd -n -iNONE
+autostart=true
+autorestart=unexpected
+startsecs=5
+minfds=16384
+stdout_logfile=/dev/null
+stderr_logfile=/var/log/supervisor/rsyslog-stderr.log
+EOF
+
 exit 0
