@@ -41,3 +41,6 @@ spec:
   - name: xmpp-legacy
     port: 5223
     protocol: TCP
+  - name: adminpanel
+    port: 7071
+    protocol: TCP

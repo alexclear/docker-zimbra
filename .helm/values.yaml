@@ -18,3 +18,9 @@ service:
 ingress:
   enabled: false
   annotations: {}
+
+admin:
+  ingress:
+    enabled: false
+    annotations: {}
+    host: admin.zimbra.my-domain.com
