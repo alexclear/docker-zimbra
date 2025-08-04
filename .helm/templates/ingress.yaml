@@ -1,0 +1,23 @@
+{{- if .Values.ingress.enabled }}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ include "service.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  tls:
+  - hosts:
+    - {{ .Values.externalHostFQDN }}
+    secretName: tls-{{ .Values.externalHostFQDN | replace "." "-" }}
+  rules:
+  - host: {{ .Values.externalHostFQDN }}
+    http:
+      paths:
+      - backend:
+          serviceName: {{ include "service.fullname" . }}
+          servicePort: 80
+{{- end }}
