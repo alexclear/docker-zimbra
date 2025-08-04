@@ -18,6 +18,10 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: {{ include "service.fullname" . }}
-          servicePort: 80
+          service:
+            name: {{ include "service.fullname" . }}
+            port:
+              number: 80
+        path: /
+        pathType: ImplementationSpecific
 {{- end }}
