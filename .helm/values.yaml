@@ -22,5 +22,7 @@ ingress:
 admin:
   ingress:
     enabled: false
-    annotations: {}
+    annotations:
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+      nginx.ingress.kubernetes.io/ssl-verify: "false"
     host: admin.zimbra.my-domain.com

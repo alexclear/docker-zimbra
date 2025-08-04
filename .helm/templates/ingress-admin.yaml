@@ -21,7 +21,7 @@ spec:
           service:
             name: {{ include "service.fullname" . }}
             port:
-              number: 7071
+              number: 9071
         path: /
         pathType: ImplementationSpecific
 {{- end }}

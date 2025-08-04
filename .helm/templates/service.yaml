@@ -44,3 +44,6 @@ spec:
   - name: adminpanel
     port: 7071
     protocol: TCP
+  - name: adminpanel-proxy
+    port: 9071
+    protocol: TCP
