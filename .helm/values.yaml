@@ -11,3 +11,6 @@ certificate:
   commonName: zimbra.my-domain.com
   dnsNames:
     - zimbra.my-domain.com
+
+service:
+  type: ClusterIP
